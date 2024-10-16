@@ -1,5 +1,4 @@
 use crate::maze_maker::{Cell, Maze, MazeType};
-use crossterm::terminal::ClearType;
 use crossterm::{cursor, execute, style, terminal};
 use std::io::stdout;
 pub struct Printer;
