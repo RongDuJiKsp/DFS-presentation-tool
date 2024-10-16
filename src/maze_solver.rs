@@ -62,7 +62,7 @@ impl MazeSolver {
     }
 
     pub fn init(self) -> Init<MazeSolver> {
-        execute!(stdout(), terminal::Clear(ClearType::All));
+        execute!(stdout(), terminal::Clear(ClearType::All)).ok();
         self.render();
         self
     }
