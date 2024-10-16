@@ -1,11 +1,11 @@
+use crate::maze_maker::{Cell, Maze, MazeType};
+use crate::maze_printer::Printer;
+use crossterm::terminal::ClearType;
+use crossterm::{execute, terminal};
 use std::io::stdout;
 use std::process::exit;
 use std::thread::sleep;
 use std::time::Duration;
-use crossterm::{execute, terminal};
-use crossterm::terminal::ClearType;
-use crate::maze_maker::{Cell, Maze, MazeType};
-use crate::maze_printer::Printer;
 
 enum Ways {
     Up,
@@ -17,10 +17,34 @@ impl Ways {
     fn next_way(&self, h: usize, w: usize, maze: &MazeType) -> Option<(usize, usize)> {
         let (p_h, p_w) = Maze::hw(maze);
         match self {
-            Ways::Up => if h > 0 { Some((h - 1, w)) } else { None }
-            Ways::Down => if h + 1 < p_h { Some((h + 1, w)) } else { None }
-            Ways::Left => if w > 0 { Some((h, w - 1)) } else { None }
-            Ways::Right => if w + 1 < p_w { Some((h, w + 1)) } else { None }
+            Ways::Up => {
+                if h > 0 {
+                    Some((h - 1, w))
+                } else {
+                    None
+                }
+            }
+            Ways::Down => {
+                if h + 1 < p_h {
+                    Some((h + 1, w))
+                } else {
+                    None
+                }
+            }
+            Ways::Left => {
+                if w > 0 {
+                    Some((h, w - 1))
+                } else {
+                    None
+                }
+            }
+            Ways::Right => {
+                if w + 1 < p_w {
+                    Some((h, w + 1))
+                } else {
+                    None
+                }
+            }
         }
     }
 }

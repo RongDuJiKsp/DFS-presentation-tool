@@ -44,6 +44,6 @@ impl Printer {
     }
     pub fn cursor_rst() {
         let (w, h) = terminal::size().unwrap();
-        execute!(stdout(),cursor::MoveTo(w-1,h-1));
+        execute!(stdout(), cursor::MoveTo(w - 1, h - 1));
     }
 }

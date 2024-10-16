@@ -9,6 +9,7 @@ pub enum Cell {
     Wall,
     Vising,
     Vised,
+    Exit,
 }
 impl Cell {
     pub fn block(&self) -> StyledContent<String> {
@@ -18,6 +19,7 @@ impl Cell {
             Cell::Wall => space.clone().with(Color::Black).on(Color::DarkGreen),
             Cell::Vising => space.clone().with(Color::Black).on(Color::Yellow),
             Cell::Vised => space.clone().with(Color::Black).on(Color::DarkYellow),
+            Cell::Exit => space.clone().with(Color::Black).on(Color::DarkRed),
         }
     }
 }
@@ -65,7 +67,7 @@ impl Maze {
         }
         let mut maze = vec![vec![Cell::Wall; width]; height];
         Maze::carve_passages(&mut maze, 1, 1);
-        maze[height - 1][width - 2] = Cell::Air;
+        maze[height - 1][width - 2] = Cell::Exit;
         maze
     }
 }
