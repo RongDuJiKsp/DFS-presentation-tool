@@ -8,7 +8,6 @@ const MARGIN_RIGHT: u16 = 3;
 const MARGIN_TOP: u16 = 3;
 impl Printer {
     pub fn print_to_screen(maze: &MazeType) {
-        execute!(stdout(), terminal::Clear(ClearType::All));
         for (idx, e) in maze.iter().enumerate() {
             execute!(
                 stdout(),

@@ -25,7 +25,7 @@ pub type MazeType = Vec<Vec<Cell>>;
 
 pub struct Maze;
 impl Maze {
-    fn hw(maze: &MazeType) -> (usize, usize) {
+    pub fn hw(maze: &MazeType) -> (usize, usize) {
         (maze.len(), maze[0].len())
     }
     pub fn screen_hw(maze: &MazeType) -> (usize, usize) {
@@ -65,7 +65,6 @@ impl Maze {
         }
         let mut maze = vec![vec![Cell::Wall; width]; height];
         Maze::carve_passages(&mut maze, 1, 1);
-        maze[1][1] = Cell::Vising;
         maze[height - 1][width - 2] = Cell::Air;
         maze
     }
