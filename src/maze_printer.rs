@@ -33,6 +33,9 @@ impl Printer {
         execute!(stdout(), cursor::MoveTo(bd, MARGIN_TOP + 3)).ok();
         execute!(stdout(), style::PrintStyledContent(Cell::Vised.block())).ok();
         execute!(stdout(), style::Print("  Visited")).ok();
+        execute!(stdout(), cursor::MoveTo(bd, MARGIN_TOP + 4)).ok();
+        execute!(stdout(), style::PrintStyledContent(Cell::Exit.block())).ok();
+        execute!(stdout(), style::Print("  Exit")).ok();
     }
     pub fn print_status(maze: &MazeType, steps: i32) {
         let w = Maze::screen_hw(maze).1 as u16;
