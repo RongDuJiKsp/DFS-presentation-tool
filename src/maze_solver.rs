@@ -78,17 +78,20 @@ impl MazeSolver {
         Printer::cursor_rst();
     }
     pub fn solve(&mut self, pos_h: usize, pos_w: usize) {
-        if self.maze[pos_h][pos_w] != Cell::Air {
+        if self.maze[pos_h][pos_w] != Cell::Air && self.maze[pos_h][pos_w] != Cell::Exit {
             return;
         }
-        let (p_h, p_w) = Maze::hw(&self.maze);
-        if pos_w + 2 == p_w && pos_h + 1 == p_h {
-            sleep(Duration::from_secs(10));
-            exit(0);
+        let mut is_exit = false;
+        if self.maze[pos_h][pos_w] == Cell::Exit {
+            is_exit = true;
         }
         self.maze[pos_h][pos_w] = Cell::Vising;
         self.step();
         self.maze[pos_h][pos_w] = Cell::Vised;
+        if is_exit {
+            sleep(Duration::from_secs(10));
+            exit(0);
+        }
         if let Some((h, w)) = Ways::Up.next_way(pos_h, pos_w, &self.maze) {
             self.solve(h, w);
         }

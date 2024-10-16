@@ -67,7 +67,7 @@ impl Maze {
         }
         let mut maze = vec![vec![Cell::Wall; width]; height];
         Maze::carve_passages(&mut maze, 1, 1);
-        maze[height - 1][width - 2] = Cell::Exit;
+        maze[height - 2][width - 2] = Cell::Exit;
         maze
     }
 }
