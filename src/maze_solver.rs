@@ -5,7 +5,6 @@ use std::time::Duration;
 use crossterm::{execute, terminal};
 use crossterm::terminal::ClearType;
 use crate::maze_maker::{Cell, Maze, MazeType};
-use crate::maze_maker::Cell::Exit;
 use crate::maze_printer::Printer;
 
 enum Ways {
@@ -55,10 +54,11 @@ impl MazeSolver {
         Printer::cursor_rst();
     }
     pub fn solve(&mut self, pos_h: usize, pos_w: usize) {
-        if self.maze[pos_h][pos_w] != Cell::Air || self.maze[pos_h][pos_w] != Exit {
+        if self.maze[pos_h][pos_w] != Cell::Air {
             return;
         }
-        if self.maze[pos_h][pos_w] == Exit  {
+        let (p_h, p_w) = Maze::hw(&self.maze);
+        if pos_w + 2 == p_w && pos_h + 1 == p_h {
             sleep(Duration::from_secs(10));
             exit(0);
         }
